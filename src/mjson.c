@@ -1012,8 +1012,9 @@ void jsonrpc_ctx_process(struct jsonrpc_ctx *ctx, const char *buf, int len,
   // Method must exist and must be a string
   if (mjson_find(buf, len, "$.method", &r.method, &r.method_len) !=
       MJSON_TOK_STRING) {
-    mjson_printf(fn, fndata, "{\"error\":{\"code\":-32700,\"message\":%.*Q}}\n",
-                 len, buf);
+    // TODO return error value instead
+    // mjson_printf(fn, fndata, "{\"error\":{\"code\":-32700,\"message\":%.*Q}}\n",
+    //              len, buf);
     return;
   }
 
@@ -1030,7 +1031,8 @@ void jsonrpc_ctx_process(struct jsonrpc_ctx *ctx, const char *buf, int len,
     }
   }
   if (m == NULL) {
-    jsonrpc_return_error(&r, JSONRPC_ERROR_NOT_FOUND, "method not found", NULL);
+    // TODO return error value instead
+    // jsonrpc_return_error(&r, JSONRPC_ERROR_NOT_FOUND, "method not found", NULL);
   }
 }
 
